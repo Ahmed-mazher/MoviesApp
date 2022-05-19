@@ -68,21 +68,23 @@ extension MoviesListViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeue() as MovieTVCell
         
         let item = resultsArr[indexPath.row]
-        
-        cell.movieTitle.text = item.title
-        cell.movieOverview.text = item.overview
-        cell.movieReleaseDate.text = item.release_date
-        cell.movieImageView.getImageKingfisher(imageUrl: EndPoints.imageBaseURL+"w500"+(item.poster_path ?? ""))
+        cell.bindCells(item: item)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
+        let movieDetailsVC = sb.instantiateInitialViewController()! as! MovieDetailsViewController
+        movieDetailsVC.movieId = resultsArr[indexPath.row].id ?? 0
+        movieDetailsVC.movieName = resultsArr[indexPath.row].title ?? ""
+        self.navigationController?.pushViewController(movieDetailsVC, animated: true)
     }
     
 }
 
 extension MoviesListViewController: UIScrollViewDelegate{
-    
-    
-    
+        
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         if position > (moviesTableView.contentSize.height-100-scrollView.frame.size.height){
@@ -96,14 +98,4 @@ extension MoviesListViewController: UIScrollViewDelegate{
     }
 }
 
-extension UIView{
-     func createSpinnerFooter() -> UIView{
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 100))
-        let spinner = UIActivityIndicatorView()
-        spinner.center = footerView.center
-        footerView.addSubview(spinner)
-        spinner.startAnimating()
-        
-        return footerView
-    }
-}
+

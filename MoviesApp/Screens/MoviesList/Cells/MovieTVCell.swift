@@ -80,4 +80,11 @@ class MovieTVCell: UITableViewCell {
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5.0).isActive = true
     }
+    
+    func bindCells(item: Results){
+        movieTitle.text = item.title
+        movieOverview.text = item.overview
+        movieReleaseDate.text = item.release_date
+        movieImageView.getImageKingfisher(imageUrl: EndPoints.imageBaseURL+"w500"+(item.poster_path ?? ""))
+    }
 }

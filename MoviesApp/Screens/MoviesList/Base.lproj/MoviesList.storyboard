@@ -24,6 +24,14 @@
             </objects>
             <point key="canvasLocation" x="944.92753623188412" y="83.705357142857139"/>
         </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="L5B-dg-ffd">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MovieDetailsViewController" id="6yV-MW-Qgh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IeD-mT-bw6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1661" y="93"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="evj-Sr-IGV">
             <objects>

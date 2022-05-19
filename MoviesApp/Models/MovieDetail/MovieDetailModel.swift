@@ -33,6 +33,61 @@ struct MovieDetailModel : Codable {
 	let vote_average : Double?
 	let vote_count : Int?
 
+    init(
+        adult: Bool? = nil,
+        backdropPath: String? = nil,
+        belongsToCollection: Belongs_to_collection? = nil,
+        budget: Int? = nil,
+        genres: [Genres]? = nil,
+        homepage: String? = nil,
+        id: Int? = nil,
+        imdbID: String? = nil,
+        originalLanguage: String? = nil,
+        originalTitle: String? = nil,
+        overview: String? = nil,
+        popularity: Double? = nil,
+        posterPath: String? = nil,
+        production_companies: [Production_companies]? = nil,
+        production_countries: [Production_countries]? = nil,
+        release_date: String? = nil,
+        revenue: Int? = nil,
+        runtime: Int? = nil,
+        spoken_languages: [Spoken_languages]? = nil,
+        status: String? = nil,
+        tagline: String? = nil,
+        title: String? = nil,
+        video: Bool? = nil,
+        vote_average: Double? = nil,
+        vote_count: Int? = nil
+    ){
+        self.adult = adult
+        self.backdrop_path = backdropPath
+        self.belongs_to_collection = belongsToCollection
+        self.budget = budget
+        self.genres = genres
+        self.homepage = homepage
+        self.id = id
+        self.imdb_id = imdbID
+        self.original_language = originalLanguage
+        self.original_title = originalTitle
+        self.overview = overview
+        self.popularity = popularity
+        self.poster_path = posterPath
+        self.production_companies = production_companies
+        self.production_countries = production_countries
+        self.release_date = release_date
+        self.revenue = revenue
+        self.runtime = runtime
+        self.spoken_languages = spoken_languages
+        self.status = status
+        self.tagline = tagline
+        self.title = title
+        self.video = video
+        self.vote_average = vote_average
+        self.vote_count = vote_count
+        
+    }
+    
 	enum CodingKeys: String, CodingKey {
 
 		case adult = "adult"
