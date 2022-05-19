@@ -42,13 +42,12 @@ class MoviesListViewController: UIViewController {
         // Naive binding
         
         viewModel.updateTableView = { [weak self] () in
-            guard let self = self else {
-                return
-            }
+            guard let self = self else {return}
             DispatchQueue.main.async {
                 let movies = self.viewModel.getMovies
-                self.resultsArr = movies 
+                self.resultsArr = movies
                 self.moviesTableView.reloadData()
+                self.moviesTableView.tableFooterView = nil
             }
         }
         
@@ -73,6 +72,7 @@ extension MoviesListViewController: UITableViewDelegate, UITableViewDataSource{
         cell.movieTitle.text = item.title
         cell.movieOverview.text = item.overview
         cell.movieReleaseDate.text = item.release_date
+        cell.movieImageView.getImageKingfisher(imageUrl: EndPoints.imageBaseURL+"w500"+(item.poster_path ?? ""))
         
         return cell
     }
@@ -80,16 +80,30 @@ extension MoviesListViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 extension MoviesListViewController: UIScrollViewDelegate{
+    
+    
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         if position > (moviesTableView.contentSize.height-100-scrollView.frame.size.height){
-            
+            self.moviesTableView.tableFooterView = view.createSpinnerFooter()
             guard !viewModel.isPaginating else{
-                // already add pagination
+                // already added
                 return
             }
-            print("Fetch")
             viewModel.getMoviesData(pagination: true)
         }
+    }
+}
+
+extension UIView{
+     func createSpinnerFooter() -> UIView{
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 100))
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        
+        return footerView
     }
 }

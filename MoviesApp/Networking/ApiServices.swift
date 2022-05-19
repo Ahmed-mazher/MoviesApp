@@ -9,7 +9,6 @@ import Foundation
 
 protocol MoviesServiceProtocol {
     func fetchMovies(urlString: String, page: Int, completion: @escaping (Result<MoviesListModel, Error>) ->())
-    
 }
 
 enum AppError: Error{

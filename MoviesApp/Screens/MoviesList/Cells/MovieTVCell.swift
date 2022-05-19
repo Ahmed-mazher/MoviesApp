@@ -16,7 +16,6 @@ class MovieTVCell: UITableViewCell {
         let iv = UIImageView()
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 10
-        iv.backgroundColor = .cyan
         iv.widthAnchor.constraint(equalToConstant: 100).isActive = true
         iv.heightAnchor.constraint(equalToConstant: 140).isActive = true
         iv.translatesAutoresizingMaskIntoConstraints = false
